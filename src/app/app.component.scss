@@ -1,0 +1,25 @@
+.layout {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 80px 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "sidebar navbar navbar"
+        "sidebar content content";
+}
+
+.content {
+    grid-area: content;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    grid-area: navbar;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}

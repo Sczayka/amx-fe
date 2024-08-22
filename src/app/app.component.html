@@ -1,0 +1,12 @@
+<div class="layout" *ngIf="!renderOutside">
+    <app-navbar class="navbar" />
+
+    <app-sidebar class="sidebar" />
+
+    <div class="content">
+        <router-outlet />
+    </div>
+</div>
+
+<router-outlet *ngIf="renderOutside"/>
+

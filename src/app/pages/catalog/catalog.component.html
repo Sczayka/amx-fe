@@ -1,0 +1,27 @@
+<app-catalog-navbar />
+
+<div style="background-color: #ecedf2;">
+    <br>
+
+    <p-carousel [value]="gallery" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="false"
+        [autoplayInterval]="3000">
+        <ng-template let-image pTemplate="item">
+            <div class="bg-cover bg-center h-30rem w-full" [style]="formatGalleryUrl(image)"></div>
+        </ng-template>
+    </p-carousel>
+
+    <br>
+
+    <div class="container">
+        <app-catalog-search-bar />
+
+        <div class="grid flex justify-content-center gap-4">
+            <div class="col-12 md:col-3" *ngFor="let vehicle of vehicles">
+                <app-catalog-card [vehicle]="vehicle" />
+            </div>
+            
+            
+        </div>
+
+    </div>
+</div>

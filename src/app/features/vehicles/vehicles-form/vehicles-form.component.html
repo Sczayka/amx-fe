@@ -1,0 +1,129 @@
+<form [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-12 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="model">Model <span class="text-red-500">*</span></label>
+
+                <input pInputText id="model" formControlName="model" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="manufacturer">Manufacturer <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="manufacturers" filter inputId="manufacturer" styleClass="w-full"
+                    optionLabel="name" optionValue="id" placeholder="Select the manufacturer"
+                    formControlName="manufacturerId"
+                    (onChange)="handleDropdownChange($event, 'manufacturerName', manufacturers)" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="year">Year <span class="text-red-500">*</span></label>
+
+                <input pInputText id="year" formControlName="year" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="color">Color <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="colors" filter inputId="color" styleClass="w-full" optionLabel="name"
+                    optionValue="id" placeholder="Select the color" formControlName="colorId"
+                    (onChange)="handleDropdownChange($event, 'colorName', colors)" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="gear">Gear type <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="gearTypes" inputId="gear" styleClass="w-full" optionLabel="name" optionValue="id"
+                    placeholder="Select the gear type" formControlName="gearTypeId"
+                    (onChange)="handleDropdownChange($event, 'gearTypeName', gearTypes)" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="fuel">Fuel type <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="fuelTypes" filter inputId="fuel" styleClass="w-full" optionLabel="name"
+                    optionValue="id" placeholder="Select the fuel type" formControlName="fuelTypeId"
+                    (onChange)="handleDropdownChange($event, 'fuelTypeName', fuelTypes)" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="price">Price <span class="text-red-500">*</span></label>
+
+                <p-inputNumber inputId="price" mode="decimal" locale="en-US" styleClass="w-full" [minFractionDigits]="2"
+                    [maxFractionDigits]="2" formControlName="price" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-12 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="description">Description</label>
+
+                <p-editor [style]="{ height: '320px' }" id="description" formControlName="description">
+                    <ng-template pTemplate="header">
+                        <span class="ql-formats">
+                            <button type="button" class="ql-bold" aria-label="Bold"></button>
+                            <button type="button" class="ql-italic" aria-label="Italic"></button>
+                            <button type="button" class="ql-underline" aria-label="Underline"></button>
+                            <button type="button" class="ql-link" aria-label="Link"></button>
+                            <button class="ql-list" value="bullet" aria-label="Unordered List" type="button"></button>
+                            <button class="ql-list" value="ordered" aria-label="Ordered List" type="button"></button>
+                        </span>
+                    </ng-template>
+                </p-editor>
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-12 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="gallery">Gallery</label>
+
+                <p-fileUpload name="gallery" chooseLabel="Select" cancelLabel="Clear" [multiple]="true"
+                    [showUploadButton]="false" accept=".jpg,.jpeg,.png" previewWidth="150" [maxFileSize]="maxFileSize"
+                    (onSelect)="onSelect($event)" (onRemove)="onRemove($event)">
+
+                    <ng-template pTemplate="content">
+                        <div class="p-fileupload-files">
+                            <ng-container>
+                                <div *ngFor="let file of innitialGalleryFiles" class="p-fileupload-row">
+                                    <div>
+                                        <img [src]="file.base64" width="150">
+                                    </div>
+
+                                    <div class="p-fileupload-filename">{{ file.name }}</div>
+
+                                    <div>{{ file.size | bytesToKb:2 }}</div>
+
+                                    <div>
+                                        <p-button icon="pi pi-times" (onClick)="onRemove($any({
+                                            file: { name: file.name }
+                                        }))" />
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-template>
+                </p-fileUpload>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-content-end">
+        <p-button label="Clear" styleClass="mr-3" [outlined]="true" severity="secondary" (onClick)="clear()" />
+
+        <p-button label="Save" icon="pi pi-save" iconPos="right" [disabled]="form.invalid" (onClick)="onSave()" />
+    </div>
+</form>
+
+<p-toast />

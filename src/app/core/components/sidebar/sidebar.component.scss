@@ -1,0 +1,39 @@
+aside {
+    height: 100%;
+    border-right: 1px solid #dfe7ef;
+
+    .logo {
+        width: 100%;
+        height: 80px;
+        padding: 1.4rem 1.2rem;
+        border-bottom: 1px solid #dfe7ef;
+    }
+
+    ul {
+        li {
+            padding: 1.2rem 1.4rem;
+            border-bottom: 1px solid #dfe7ef;
+            transition: all .2s ease-in-out;
+            color: #616161;
+            cursor: pointer;
+            
+            span {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+
+            i {
+                font-size: 1rem;
+                margin-right: .5rem;
+            }
+        }
+
+        li:hover {
+            background-color: #F5F5F5;
+        }
+
+        li.active {
+            background-color: #F5F5F5;
+        }
+    }
+}

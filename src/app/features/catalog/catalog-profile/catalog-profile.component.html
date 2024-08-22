@@ -1,0 +1,36 @@
+<app-catalog-navbar />
+
+<div class="h-screen" style="background-color: #ecedf2;">
+    <br>
+
+    <div class="container">
+        <p-menubar [model]="items" />
+
+        <br>
+
+        <p-card>
+            <app-clients-form *ngIf="step === 'profile'"></app-clients-form>
+
+            <ng-container *ngIf="step === 'orders'">
+                <p-dataView [value]="orders">
+                    <ng-template pTemplate="list" let-orders>
+                        <div class="grid grid-nogutter">
+                            <div class="col-12 mb-3 p-3 border-1 border-300 border-round" *ngFor="let order of orders; let first = first">
+                                <p class="m-0 mb-2 ">
+                                    Model: {{order.vehicleModel}}
+                                </p>
+
+                                <span>
+                                    Status: {{order.statusName}} - CreatedAt: {{order.createdAt | date:'short' }} -
+                                    Updated At: {{order.updatedAt | date:'short'}}
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-dataView>
+            </ng-container>
+        </p-card>
+    </div>
+</div>
+
+<p-toast />

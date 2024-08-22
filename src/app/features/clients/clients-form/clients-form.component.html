@@ -1,0 +1,125 @@
+<form [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-12 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="name">Name <span class="text-red-500">*</span></label>
+
+                <input pInputText id="name" formControlName="name" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-12 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="email">Email <span class="text-red-500">*</span></label>
+
+                <input pInputText id="email" formControlName="email" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="phone">Phone</label>
+
+                <p-inputMask mask="(99) 9999-9999" inputId="phone" formControlName="phone" placeholder="(00) 0000-0000"
+                    styleClass="w-full" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="cellphone">Cellphone <span class="text-red-500">*</span></label>
+
+                <p-inputMask mask="(99) 9 9999-9999" inputId="cellphone" formControlName="cellphone"
+                    placeholder="(00) 0 0000-0000" styleClass="w-full" />
+            </div>
+        </div>
+
+        <ng-container formGroupName="address">
+            <div class="field col-12 md:col-3 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="zipcode">
+                        ZIP Code
+                    </label>
+
+                    <p-inputGroup>
+                        <p-inputMask mask="99999-999" inputId="zipcode" formControlName="zipcode"
+                            placeholder="00000-000" class="w-full"
+                            styleClass="w-full border-right-none border-noround-right" />
+
+                        <button type="button" pButton icon="pi pi-search" (click)="findClientAddress()"></button>
+                    </p-inputGroup>
+                </div>
+
+            </div>
+
+            <div class="field col-12 md:col-7 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="street">
+                        Street
+                    </label>
+
+                    <input type="text" id="street" formControlName="street" pInputText />
+                </div>
+            </div>
+
+            <div class="field col-12 md:col-2 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="number">
+                        Number
+                    </label>
+
+                    <input type="text" id="number" formControlName="number" pInputText />
+                </div>
+            </div>
+
+            <div class="field col-12 md:col-4 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="neighborhood">
+                        Neighborhood
+                    </label>
+
+                    <input type="text" id="neighborhood" formControlName="neighborhood" pInputText />
+                </div>
+            </div>
+
+            <div class="field col-12 md:col-4 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="city">
+                        City
+                    </label>
+
+                    <input type="text" id="city" formControlName="city" pInputText />
+                </div>
+            </div>
+
+            <div class="field col-12 md:col-4 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="state">
+                        State
+                    </label>
+
+                    <input type="text" id="state" formControlName="state" pInputText />
+                </div>
+            </div>
+
+            <div class="field col-12 md:col-12 mb-4">
+                <div class="flex flex-column gap-2">
+                    <label for="complement">
+                        Complement
+                    </label>
+
+                    <input type="text" id="complement" formControlName="complement" pInputText />
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+
+    <div class="flex justify-content-end">
+        <p-button label="Clear" styleClass="mr-3" [outlined]="true" severity="secondary" (onClick)="clear()" />
+
+        <p-button label="Save" icon="pi pi-save" iconPos="right" [disabled]="form.invalid" (onClick)="onSave()" />
+    </div>
+</form>
+
+<p-toast />

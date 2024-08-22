@@ -1,0 +1,56 @@
+<p-table [value]="vehicles" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Color</th>
+            <th>Gear</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+
+        <tr>
+            <th>
+                <p-columnFilter type="text" field="manufacturer" placeholder="Search by manufacturer" ariaLabel="Filter Manufacturer" />
+            </th>
+            <th>
+                <p-columnFilter type="text" field="model" placeholder="Search by model" ariaLabel="Filter Model" />
+            </th>
+            <th>
+                <p-columnFilter type="text" field="year" placeholder="Search by year" ariaLabel="Filter Year" />
+            </th>
+            <th>
+                <p-columnFilter type="text" field="color" placeholder="Search by color" ariaLabel="Filter Color" />
+            </th>
+            <th>
+                <p-columnFilter type="text" field="gear" placeholder="Search by gear" ariaLabel="Filter Gear" />
+            </th>
+            <th>
+                <p-columnFilter type="text" field="price" placeholder="Search by price" ariaLabel="Filter Price" />
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-vehicle>
+        <tr>
+            <td>{{vehicle.manufacturerName}}</td>
+            <td>{{vehicle.model}}</td>
+            <td>{{vehicle.year}}</td>
+            <td>{{vehicle.colorName}}</td>
+            <td>{{vehicle.gearTypeName}}</td>
+            <td>{{vehicle.price | currency:'USD'}}</td>
+            <td>
+                <p-button icon="pi pi-ellipsis-h" [rounded]="true" [text]="true"
+                    (onClick)="menu.toggle($event); selectedVehicle=vehicle" />
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-tieredMenu #menu [model]="items" [popup]="true" />
+
+<p-toast />
+
+<p-confirmDialog />

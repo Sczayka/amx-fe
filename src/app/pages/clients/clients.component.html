@@ -1,0 +1,13 @@
+<ng-container *ngIf="step === 'list'">
+    <a routerLink="/panel/clients/new" class="p-button p-button-outlined no-underline mb-3">
+        <i class="pi pi-plus mr-2"></i> New
+    </a>
+</ng-container>
+
+<p-card [header]="cardTitle" [subheader]="cardSubTitle">
+    <div [ngSwitch]="step">
+        <app-clients-form *ngSwitchCase="'form'" />
+
+        <app-clients-list *ngSwitchDefault />
+    </div>
+</p-card>

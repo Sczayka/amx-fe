@@ -1,0 +1,41 @@
+<form [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="vehicle">Vehicle <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="vehicles" filter formControlName="vehicleId" inputId="vehicle" optionLabel="model"
+                    optionValue="id" placeholder="Select a Vehicle" styleClass="w-full"
+                    (onChange)="handleDropdownChange($event, 'vehicleModel', 'model', vehicles)" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="client">Client <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="clients" filter formControlName="clientId" inputId="client" optionLabel="name"
+                    optionValue="id" placeholder="Select a Client" styleClass="w-full"
+                    (onChange)="handleDropdownChange($event, 'clientName', 'name', clients)" />
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-12 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="status">Status <span class="text-red-500">*</span></label>
+
+                <p-dropdown [options]="orderStatus" filter formControlName="statusId" inputId="status"
+                    optionLabel="name" optionValue="id" placeholder="Select a Status" styleClass="w-full"
+                    (onChange)="handleDropdownChange($event, 'statusName', 'name', orderStatus)" />
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-content-end">
+        <p-button label="Clear" styleClass="mr-3" [outlined]="true" severity="secondary"  />
+
+        <p-button label="Save" icon="pi pi-save" iconPos="right" [disabled]="form.invalid" (onClick)="onSave()" />
+    </div>
+</form>
+
+<p-toast />

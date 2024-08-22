@@ -1,0 +1,20 @@
+<aside class="relative">
+    <div class="logo">
+        <img src="../../../assets/img/logo.svg">
+    </div>
+
+    <ul>
+        <li *ngFor="let item of sidebarItems" [ngClass]="{'active': item.active}" (click)="navigate(item)">
+            <i [class]="'pi pi-' + item.icon"></i>
+
+            <span>{{ item.title }}</span>
+        </li>
+    </ul>
+
+    <ul class="absolute bottom-0 w-full border-top-1 border-200">
+        <li (click)="disconnect()">
+            <i class="pi pi-sign-out"></i>
+            <span>Disconnect</span>
+        </li>
+    </ul>
+</aside>

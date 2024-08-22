@@ -1,0 +1,16 @@
+<nav class="bg-white border-bottom-1 border-300">
+    <div class="container flex justify-content-between align-items-center">
+        <a routerLink="/home" class="no-underline text-black-alpha-90 text-sm">
+            <img src="../../../../assets/img/logo.svg" class="p-3" height="64">
+        </a>
+
+        <div class="flex align-items-center border-left-1 border-300" style="height: 64px;">
+            <a [routerLink]="loginLink" class="no-underline text-black-alpha-90 text-sm">
+                <span class="pi pi-user ml-4 mr-2"></span>
+                {{user ? user.client.name : 'Login'}}
+            </a>
+
+            <i *ngIf="user" class="cursor-pointer ml-4 pt-1 pi pi-sign-out" (click)="disconnect()"></i>
+        </div>
+    </div>
+</nav>

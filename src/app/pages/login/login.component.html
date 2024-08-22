@@ -1,0 +1,35 @@
+<div class="grid m-0">
+    <div class="col-7 bg-primary h-screen"></div>
+
+    <div class="col-5 mt-8 pt-8">
+        <form [formGroup]="form" class="p-8 formgrid grid">
+            <img src="../../../assets/img/logo.svg" class="m-auto p-6 pb-5" width="440">
+
+            <div class="field col-12 md:col-12 mb-4 p-0">
+                <div class="flex flex-column gap-2">
+                    <label for="email">Email</label>
+
+                    <input pInputText id="email" formControlName="email" />
+                </div>
+            </div>
+
+            <div class="field col-12 md:col-12 mb-4 p-0">
+                <div class="flex flex-column gap-2">
+                    <label for="password">Password</label>
+
+                    <p-password inputId="password" inputStyleClass="w-full" styleClass="w-full" formControlName="password" [feedback]="false" [toggleMask]="true" />
+                </div>
+            </div>
+
+            <div class="flex w-full mb-4">
+                <p-checkbox [binary]="true" inputId="stayLogged" formControlName="stayLogged" styleClass="mr-2" />
+
+                <label for="stayLogged">Keep me logged in</label>
+            </div>
+            
+            <p class="mt-0 mb-4 text-red-500" *ngIf="showErrorMessage">Invalid credentials, confirm the email or password.</p>
+
+            <p-button label="Connect" class="w-full" styleClass="w-full" [loading]="isLoading" [disabled]="form.invalid" (onClick)="login()" />
+        </form>
+    </div>
+</div>
